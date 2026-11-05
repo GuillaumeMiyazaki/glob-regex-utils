@@ -28,3 +28,10 @@ without intending a class. If you need strict validation, check the pattern
 before calling this function.
 
 The only exported name is `glob_to_regex`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
